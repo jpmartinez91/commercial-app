@@ -38,11 +38,7 @@ export class ProductService {
     deleteHero(id: String): Observable<{}> {
         // const url = `${this.baseURL}/${id}`;
         // return this.http.delete(url);
-        return this.http.delete(`${this.baseURL}/delete`, {
-            params: new HttpParams({
-                'id': id
-            })
-        });
+        return this.http.delete(`${this.baseURL}/delete`);
     }
 
     updateHero(product: Product): Observable<Product> {
