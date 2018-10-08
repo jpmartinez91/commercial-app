@@ -1,0 +1,95 @@
+<form #f="ngForm">
+  <fieldset>
+    <legend>Nuevo Producto</legend>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group has-success">
+          <!-- <input hidden type="text" class="form-control" placeholder="Nombre del producto"  [(ngModel)]="_id"
+            #id="ngModel" name="id"> -->
+          <label class="form-control-label" for="inputSuccess1">Nombre</label>
+          <input type="text" class="form-control" placeholder="Nombre del producto" required [(ngModel)]="_name" #name="ngModel"
+            name="name">
+          <div *ngIf="name.errors && name.dirty" class="alert alert-danger">
+            <div [hidden]="!name.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group has-success">
+          <label class="form-control-label" for="inputSuccess1">Estado</label>
+          <input type="text" class="form-control" placeholder="Estado del producto" required [(ngModel)]="_state"
+            #state="ngModel" name="state">
+          <div *ngIf="state.errors && state.dirty" class="alert alert-danger">
+            <div [hidden]="!state.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group has-success">
+          <label class="form-control-label" for="inputSuccess1">Linea</label>
+          <input type="text" class="form-control" placeholder="Linea del producto" required [(ngModel)]="_line" #line="ngModel"
+            name="line">
+          <div *ngIf="line.errors && line.dirty" class="alert alert-danger">
+            <div [hidden]="!line.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group has-success">
+          <label class="form-control-label" for="inputSuccess1">Unidades</label>
+          <input type="number" class="form-control" placeholder="Número de unidades" required [(ngModel)]="_units"
+            #units="ngModel" name="units">
+          <div *ngIf="units.errors && units.dirty" class="alert alert-danger">
+            <div [hidden]="!units.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label">Precio</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input class="form-control" type="number" placeholder="Precio del producto" #price="ngModel" required
+              [(ngModel)]="_price" name="price">
+          </div>
+          <div *ngIf="price.errors && price.dirty" class="alert alert-danger">
+            <div [hidden]="!price.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="exampleTextarea">Descripción</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3" #description="ngModel" required [(ngModel)]="_description"
+          name="description"></textarea>
+        <div *ngIf=" description.errors && description.dirty" class="alert alert-danger">
+          <div [hidden]="!description.errors.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default" (click)="f.reset()">Cancel</button>
+        <button type="submit" class="btn btn-primary" (click)="createProduct(_name, _units, _price, _line, _state, _description); f.reset()"
+          [disabled]="!f.form.valid">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
