@@ -1,14 +1,3 @@
-<!-- <ul class="heroes">
-  <li *ngFor="let product of products">
-    <a (click)="edit(product)">
-      <span class="badge">{{ product._id || -1 }}</span>
-      <span *ngIf="product!==editProduct">{{product.name_product}}</span>
-      <input *ngIf="product===editProduct" [(ngModel)]="product.name_product" (blur)="update()" (keyup.enter)="update()">
-    </a>
-    <button class="delete" title="delete hero" (click)="delete(product)">x</button>
-  </li>
-</ul> -->
-
 <table class="table">
   <thead>
     <tr>
@@ -23,15 +12,35 @@
   </thead>
   <tbody>
     <tr *ngFor="let product of products">
-      <th scope="row">{{product.name_product}}</th>
-      <td>{{product.line_product}}</td>
-      <td>{{product.price_product}}</td>
-      <td>{{product.units_product}}</td>
-      <td>{{product.state_product}}</td>
-      <td>{{product.description_product}}</td>
+      <th scope="row">
+        <span *ngIf="product!==editProduct">{{product.name_product}}</span>
+        <input *ngIf="product===editProduct" [(ngModel)]="product.name_product">
+      </th>
       <td>
-        <button type="button" class="btn btn-outline-info" (click)="edit(product)">Editar</button>
-        <button type="button" class="btn btn-outline-warning" (click)="delete(product)">Eliminar</button>
+        <span *ngIf="product!==editProduct">{{product.line_product}}</span>
+        <input *ngIf="product===editProduct" [(ngModel)]="product.line_product">
+      </td>
+      <td>
+        <span *ngIf="product!==editProduct">{{product.price_product}}</span>
+        <input type="number" *ngIf="product===editProduct" [(ngModel)]="product.price_product">
+      </td>
+      <td>
+        <span *ngIf="product!==editProduct">{{product.units_product}}</span>
+        <input type="number" *ngIf="product===editProduct" [(ngModel)]="product.units_product">
+      </td>
+      <td>
+        <span *ngIf="product!==editProduct">{{product.state_product}}</span>
+        <input *ngIf="product===editProduct" [(ngModel)]="product.state_product">
+      </td>
+      <td>
+        <span *ngIf="product!==editProduct">{{product.description_product}}</span>
+        <input *ngIf="product===editProduct" [(ngModel)]="product.description_product">
+      </td>
+      <td>
+        <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-info" (click)="edit(product)">Editar</button>
+        <button *ngIf="product===editProduct" type="button" class="btn btn-outline-info" (click)="update()">Guardar</button>
+        <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-warning" (click)="edit(product)">Eliminar</button>
+        <button *ngIf="product===editProduct" type="button" class="btn btn-outline-warning">Cancelar</button>
       </td>
     </tr>
   </tbody>

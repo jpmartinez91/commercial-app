@@ -6,14 +6,6 @@ import { Observable } from 'rxjs';
 
 import { Product } from "./product";
 
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    }),
-    responseType: 'json'
-};
-
 @Injectable()
 export class ProductService {
 
@@ -35,16 +27,12 @@ export class ProductService {
         })
     }
 
-    deleteHero(id: String): Observable<{}> {
-        // const url = `${this.baseURL}/${id}`;
-        // return this.http.delete(url);
-        return this.http.delete(`${this.baseURL}/delete`);
+    deleteProduct(id: String): Observable<{}> {
+        return this.http.delete(`${this.baseURL}/delete?id=${id}`);
     }
 
-    updateHero(product: Product): Observable<Product> {
-        httpOptions.headers =
-            httpOptions.headers.set('Authorization', 'my-new-auth-token');
-        return this.http.put<Product>(this.baseURL, product, {
+    updatePRoduct(product: Product): Observable<Product> {
+        return this.http.put<Product>(`${this.baseURL}/update`, product, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
