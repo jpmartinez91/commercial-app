@@ -10,6 +10,24 @@ import { HomeComponent } from './home/home.component';
 import { Routing } from './app.routing';
 import { ProductsComponent } from './products/products.component';
 
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, } from "angular-6-social-login";
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("Your-Facebook-app-id")
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("Your-Google-Client-Id")
+      },
+    ]
+  );
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +40,13 @@ import { ProductsComponent } from './products/products.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    Routing
+    Routing,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

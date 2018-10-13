@@ -23,11 +23,13 @@ export class ProductsComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts()
       .subscribe(products => {
+        console.log(products);
+
         this.products = products;
       },
         err => {
           console.error(err);
-          const vacio: Product = { "id_p": "--", "description_product": "--", "line_product": "--", "name_product": "--", "price_product": 0, "state_product": "--", "units_product": 0 }
+          const vacio: Product = { "id_product": "--", "description_product": "--", "line_product": "--", "name_product": "--", "price_product": 0, "state_product": "--", "units_product": 0 }
           this.products = []
           this.products.push(vacio);
         });
@@ -35,7 +37,7 @@ export class ProductsComponent implements OnInit {
 
   delete(product: Product): void {
     this.products = this.products.filter(h => h !== product);
-    this.productService.deleteProduct(product.id_p).subscribe();
+    this.productService.deleteProduct(product.id_product).subscribe();
   }
 
   edit(product) {
@@ -46,7 +48,7 @@ export class ProductsComponent implements OnInit {
     if (this.editProduct) {
       this.productService.updatePRoduct(this.editProduct)
         .subscribe(product => {
-          const ix = product ? this.products.findIndex(h => h.id_p === product.id_p) : -1;
+          const ix = product ? this.products.findIndex(h => h.id_product === product.id_product) : -1;
           if (ix > -1) { this.products[ix] = product; }
         });
       this.editProduct = undefined;

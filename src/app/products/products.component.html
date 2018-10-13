@@ -39,7 +39,7 @@
       <td>
         <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-info" (click)="edit(product)">Editar</button>
         <button *ngIf="product===editProduct" type="button" class="btn btn-outline-info" (click)="update()">Guardar</button>
-        <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-warning" (click)="edit(product)">Eliminar</button>
+        <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-warning" (click)="delete(product)">Eliminar</button>
         <button *ngIf="product===editProduct" type="button" class="btn btn-outline-warning">Cancelar</button>
       </td>
     </tr>
