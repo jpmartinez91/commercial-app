@@ -9,16 +9,16 @@ import { Product } from "./product";
 @Injectable()
 export class ProductService {
 
-    private baseURL = "http://localhost:7071/api";
+    private baseURL = "https://tesis.azurewebsites.net/api/"
 
     constructor(private http: HttpClient) { }
 
     getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(`${this.baseURL}/getProducts`);
+        return this.http.get<Product[]>(`${this.baseURL}/list`);
     }
 
     addProduct(product: Product): Observable<Product> {
-        return this.http.post<Product>(`${this.baseURL}/index`, product, {
+        return this.http.post<Product>(`${this.baseURL}/create`, product, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
