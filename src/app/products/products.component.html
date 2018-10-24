@@ -7,6 +7,8 @@
       <th scope="col">Unidades</th>
       <th scope="col">Estado</th>
       <th scope="col">Descripcion</th>
+      <th scope="col">Creado</th>
+      <th scope="col">Actualizado</th>
       <th scope="col">Opciones</th>
     </tr>
   </thead>
@@ -37,9 +39,15 @@
         <input *ngIf="product===editProduct" [(ngModel)]="product.description_product">
       </td>
       <td>
+        <span *ngIf="product.created">{{product.created | date:'medium'}}</span>
+      </td>
+      <td>
+        <span *ngIf="product.updated">{{product.updated | date:'medium'}}</span>
+      </td>
+      <td>
         <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-info" (click)="edit(product)">Editar</button>
         <button *ngIf="product===editProduct" type="button" class="btn btn-outline-info" (click)="update()">Guardar</button>
-        <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-warning" (click)="edit(product)">Eliminar</button>
+        <button *ngIf="product!==editProduct" type="button" class="btn btn-outline-warning" (click)="delete(product)">Eliminar</button>
         <button *ngIf="product===editProduct" type="button" class="btn btn-outline-warning">Cancelar</button>
       </td>
     </tr>

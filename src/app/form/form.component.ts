@@ -23,7 +23,7 @@ export class FormComponent implements OnInit {
   }
 
   createProduct(name_product, units_product, price_product, line_product, state_product, description_product) {
-
+    alert("ap");
     if (!name_product || !units_product || !price_product || !line_product || !state_product || !description_product) {
       return;
     }
@@ -31,9 +31,10 @@ export class FormComponent implements OnInit {
     const newProduct: Product = { name_product, units_product, price_product, line_product, state_product, description_product } as Product;
 
     this.service.addProduct(newProduct).subscribe(data => {
+      alert("llll");
       console.log(data);
     }, err => {
-      console.error(err.message);
+      console.error(err);
     })
   }
 

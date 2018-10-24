@@ -4,8 +4,6 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group has-success">
-          <!-- <input hidden type="text" class="form-control" placeholder="Nombre del producto"  [(ngModel)]="_id"
-            #id="ngModel" name="id"> -->
           <label class="form-control-label" for="inputSuccess1">Nombre</label>
           <input type="text" class="form-control" placeholder="Nombre del producto" required [(ngModel)]="_name" #name="ngModel"
             name="name">
@@ -85,10 +83,10 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default" (click)="f.reset()">Cancel</button>
+      <div class="col-lg-10 col-lg-offset-2 text-center">
+        <button type="reset" class="btn btn-default" (click)="f.reset()">Cancelar</button>
         <button type="submit" class="btn btn-primary" (click)="createProduct(_name, _units, _price, _line, _state, _description); f.reset()"
-          [disabled]="!f.form.valid">Submit</button>
+          [disabled]="!f.form.valid">Enviar</button>
       </div>
     </div>
   </fieldset>
