@@ -28,6 +28,8 @@ export class ProductsComponent implements OnInit {
           this.products = []
           this.products.push(vacio);
         } else {
+          console.log(products);
+
           this.products = products;
         }
       },

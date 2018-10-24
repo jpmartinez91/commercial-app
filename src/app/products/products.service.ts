@@ -1,17 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { HttpHeaders } from "@angular/common/http";
-
 import { Observable } from "rxjs";
-
 import { Product } from "./product";
 
 @Injectable()
 export class ProductService {
-  private baseURL = "http://localhost:3000"
-  // "https://24p21dgvy0.execute-api.us-east-1.amazonaws.com/dev";
-  // "https://commercial-functions.azurewebsites.net/api";
-  // "http://localhost:7071/api";
+  private baseURL = "https://24p21dgvy0.execute-api.us-east-1.amazonaws.com/dev";
 
   constructor(private http: HttpClient) { }
 
@@ -36,15 +31,15 @@ export class ProductService {
   }
 
   deleteProduct(id: String): Observable<{}> {
-    return this.http.delete(`${this.baseURL}/delete?id=${id}`);
+    return this.http.delete(`${this.baseURL}/delete/${id}`);
   }
 
   updatePRoduct(product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.baseURL}/update/${product.id_product}`, { product }, {
+    return this.http.put<Product>(`${this.baseURL}/update/${product.id_product}`, product, {
       headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        "Content-Type": "application/json",
-      })
+        'Content-Type': 'application/json',
+      }),
+      responseType: 'json'
     });
   }
 }
