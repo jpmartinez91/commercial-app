@@ -28,13 +28,10 @@ export class ProductsComponent implements OnInit {
           this.products = []
           this.products.push(vacio);
         } else {
-          console.log(products);
-
           this.products = products;
         }
       },
         err => {
-          console.error(err);
           const vacio: Product = { "id_product": "-error-", "description_product": "-error-", "line_product": "-error-", "name_product": "-error-", "price_product": 0, "state_product": "-error-", "units_product": 0 }
           this.products = []
           this.products.push(vacio);

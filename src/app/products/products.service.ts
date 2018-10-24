@@ -20,7 +20,6 @@ export class ProductService {
   }
 
   addProduct(product: Product): Observable<Product> {
-    alert("----");
     console.log(product);
     return this.http.post<Product>(`${this.baseURL}/create`, product, {
       headers: new HttpHeaders({
