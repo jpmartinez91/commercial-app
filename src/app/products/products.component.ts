@@ -24,7 +24,6 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts()
       .subscribe(products => {
         console.log(products);
-
         this.products = products;
       },
         err => {
@@ -37,7 +36,13 @@ export class ProductsComponent implements OnInit {
 
   delete(product: Product): void {
     this.products = this.products.filter(h => h !== product);
-    this.productService.deleteProduct(product.id_product).subscribe();
+    this.productService.deleteProduct(product.id_product).subscribe(
+      ok => {
+        console.log(ok)
+      },
+      err => {
+        console.error(err);
+      });
   }
 
   edit(product) {
@@ -48,9 +53,15 @@ export class ProductsComponent implements OnInit {
     if (this.editProduct) {
       this.productService.updatePRoduct(this.editProduct)
         .subscribe(product => {
+          console.log(product);
+
           const ix = product ? this.products.findIndex(h => h.id_product === product.id_product) : -1;
           if (ix > -1) { this.products[ix] = product; }
-        });
+        },
+          err => {
+            console.error(err);
+
+          });
       this.editProduct = undefined;
     }
   }
